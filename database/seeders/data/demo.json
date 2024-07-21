@@ -1,0 +1,45 @@
+[
+  {
+      "opening_hours": {
+          "periods": [
+             {
+                 "open": {"day": 0, "time": "1000"},
+                 "close": {"day": 0, "time": "2300"}
+             },
+             {
+                 "open": {"day": 1, "time": "1000"},
+                 "close": {"day": 1, "time": "2300"}
+             },
+             {
+                 "open": {"day": 2, "time": "1000"},
+                 "close": {"day": 2, "time": "2300"}
+             },
+             {
+                 "open": {"day": 3, "time": "1000"},
+                 "close": {"day": 3, "time": "2300"}
+             },
+             {
+                 "open": {"day": 4, "time": "1000"},
+                 "close": {"day": 4, "time": "2300"}
+             },
+             {
+                 "open": {"day": 5, "time": "1000"},
+                 "close": {"day": 5, "time": "2300"}
+             },
+             {
+                 "open": {"day": 6, "time": "1000"},
+                 "close": {"day": 6, "time": "2300"}
+             }
+          ],
+          "weekday_text": [
+              "Sunday: 10:00 AM - 23:00 PM",
+              "Moday: 10:00 AM - 23:00 PM",
+              "Tuesday: 10:00 AM - 23:00 PM",
+              "Wednesay: 10:00 AM - 23:00 PM",
+              "Thursday: 10:00 AM - 23:00 PM",
+              "Friay: 10:00 AM - 23:00 PM",
+              "Saturday: 10:00 AM - 23:00 PM"
+          ]
+      }
+  } 
+]
