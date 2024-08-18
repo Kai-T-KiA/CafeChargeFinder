@@ -14,12 +14,19 @@
         <div class="result">
             <ul>
                 @foreach ($places as $place)
-                  <li class="place_name">{{ $place->name }}</li>
+                  <li class="place_name">
+                      <a href="/places/{{ $place->id }}">{{ $place->name }}</a>
+                  </li>
                 @endforeach
             </ul>
         </div>
         
+        <div class='registration'>
+            <a href='/finder/regist'>店舗登録</a>
+        </div>
+        
         <script async defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ env('GOOGLE_MAP_API') }}&libraries=marker&callback=initMap"></script>
+        <!--googel mapの表示処理--> 
         <script>
             var places = @json($places);
             
@@ -72,7 +79,7 @@
             }
             
             // ページがロードされたときに地図を初期化
-            window.onload = initMap;
+            window.onload = initMap;s
         
             
         </script>
