@@ -15,17 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     // return view('welcome');
-//     return view('finder.result');
-// });
-
-Route::get('/', [FinderController::class, 'result']);
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/posts', [FinderController::class, 'store']);
+Route::get('/finder/home', [FinderController::class, 'home'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/finder/result', [FinderController::class, 'result']);
+Route::get('/finder/regist', [FinderController::class, 'regist']);
+
+Route::get('/places/{place}', [FinderController::class, 'detail']);
+
+
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
