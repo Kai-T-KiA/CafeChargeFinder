@@ -25,6 +25,10 @@
             <a href='/finder/regist'>店舗登録</a>
         </div>
         
+        <div class="footer">
+            <a href="/finder/home">戻る</a>
+        </div>
+        
         <script async defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ env('GOOGLE_MAP_API') }}&libraries=marker&callback=initMap"></script>
         <!--googel mapの表示処理--> 
         <script>

@@ -26,10 +26,10 @@
                     @php
                         $openingHours = json_decode($place->opening_hours, true);
                         // dump($place->opening_hours);
-                        // dump($openingHours); // デコード後の配列を表示
+                        // dd($openingHours); // デコード後の配列を表示
                     @endphp
                     @if(isset($openingHours))
-                        @foreach ($openingHours[0]['opening_hours']['weekday_text'] as $text)
+                        @foreach ($openingHours as $text)
                             <p>{{ $text }}</p>
                         @endforeach
                     @else
@@ -46,7 +46,7 @@
         
         
         <div class="footer">
-            <a href="/">戻る</a>
+            <a href="/finder/result">戻る</a>
         </div>
         
         <script async defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ env('GOOGLE_MAP_API') }}&libraries=marker&callback=initMap"></script>
