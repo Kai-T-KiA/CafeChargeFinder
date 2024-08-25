@@ -7,37 +7,33 @@
         
     </head>
     <body>
-        
-        <div class="detail">
-            <h1>新店舗登録</h1>
-            <form action="/posts" method="POST">
-                @csrf
-                <div class="name">
-                    <h2>店舗名</h2>
-                    <input type="text" name="place[name]" placeholder="店舗名"/>
-                </div>
-                <div class="information">
-                    <div class='title'>
-                        <h2>タイトル</h2>
-                        <input type='text' name="post[title]" placeholder='タイトル'>
+        <x-app-layout>
+            <div class="detail">
+                <h1>新店舗登録</h1>
+                <form action="/posts" method="POST">
+                    @csrf
+                    <div class="name">
+                        <h2>店舗名</h2>
+                        <input type="text" name="place[name]" placeholder="店舗名"/>
                     </div>
-                    <div class='body'>
-                        <h2>本文</h2>
-                        <textarea name="post[body]" placeholder="コンセント情報"></textarea>
+                    <div class="information">
+                        <div class='title'>
+                            <h2>タイトル</h2>
+                            <input type='text' name="post[title]" placeholder='タイトル'>
+                        </div>
+                        <div class='body'>
+                            <h2>本文</h2>
+                            <textarea name="post[body]" placeholder="コンセント情報"></textarea>
+                        </div>
                     </div>
-                </div>
-                <input type="submit" value="登録"/>
-            </form>
-        </div>
-        
-        <div class="footer">
-            <a href="/">戻る</a>
-        </div>
-        
-        <script>
-        
+                    <input type="submit" value="登録"/>
+                </form>
+            </div>
             
-        </script>
+            <div class="footer">
+                <a href="/finder/home">戻る</a>
+            </div>
+        </x-app-layout>
 
     </body>
 </html>

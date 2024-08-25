@@ -20,24 +20,18 @@ Route::get('/', function () {
 });
 
 
-Route::post('/posts', [FinderController::class, 'store']);
-Route::get('/finder/home', [FinderController::class, 'home'])->middleware(['auth', 'verified'])->name('home');
-Route::get('/finder/result', [FinderController::class, 'result']);
-Route::get('/finder/regist', [FinderController::class, 'regist']);
-
-Route::get('/places/{place}', [FinderController::class, 'detail']);
-
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+Route::group(['middleware' => ['auth']], function() {
+    Route::post('/save-location', [FinderController::class, 'save_location'])->name('save_location');
+    Route::post('/posts', [FinderController::class, 'store'])->name('store');
+    Route::get('/finder/home', [FinderController::class, 'home'])->name('home');
+    Route::get('/finder/result', [FinderController::class, 'result'])->name('result');
+    Route::get('/finder/regist', [FinderController::class, 'regist'])->name('regist');
+    Route::get('/places/{place}', [FinderController::class, 'detail'])->name('detail');
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 require __DIR__.'/auth.php';
