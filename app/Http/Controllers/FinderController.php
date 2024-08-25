@@ -17,9 +17,42 @@ class FinderController extends Controller
         return view('finder.home');
     }
     
-    public function result(Place $place) {
-        return view('finder.result')->with(['places' => $place->get()]);
-        // return view('finder.result');
+    public function save_location(Request $request) {
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
+    
+        // セッションに位置情報を保存
+        session(['current_location' => ['latitude' => $latitude, 'longitude' => $longitude]]);
+        
+        return response()->json(['success' => true]);
+    }
+    
+    public function result(Request $request, Place $place) {
+        $current_location = session('current_location');
+    
+        if (!$current_location) {
+            // セッションに位置情報がない場合の処理
+            return redirect()->route('home')->with('error', '位置情報が保存されていません。');
+        }
+        
+        $current_latitude = $current_location['latitude'];
+        $current_longitude = $current_location['longitude'];
+        
+        
+        $radius = 2000; // 2 km
+
+        $places = $place::select('id', 'name', 'latitude', 'longitude')
+            ->selectRaw(
+                '(6371000 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance',
+                [$current_latitude, $current_longitude, $current_latitude]
+            )
+            ->having('distance', '<=', $radius)
+            ->orderBy('distance')
+            ->limit(5)
+            ->get();
+            
+        
+        return view('finder.result')->with(['places' => $places]);
     }
     
     public function detail(Place $place) {
@@ -34,52 +67,12 @@ class FinderController extends Controller
         
         // ユーザーが入力した店舗名
         $user_input_place_name = $request['place']['name'];
-        // $user_input_place_name = 'サンマルクカフェ 目白駅前店';
-        
-        // dump($user_input_place_name);
-        
-        // ------------------------------------------
-        
-        // $query = $user_input_place_name.' 営業時間';
-        // $apiKey = env('GOOGLE_MAP_API');
-        // $cx = env('GOOGLE_CSE_ID');
-    
-        // $response = Http::get('https://www.googleapis.com/customsearch/v1', [
-        //     'key' => $apiKey,
-        //     'cx' => $cx,
-        //     'q' => $query,
-        // ]);
-    
-        // $results = $response->json();
-        
-        // dump($results);
-    
-        // return view('search_results', ['results' => $results['items']]);
-        // ーーーーーーーーーーーーーーーーーーー
-        
-        // $response = Http::get('https://maps.googleapis.com/maps/api/place/textsearch/json', [
-        //     'query' => $query,
-        //     'key' => $apiKey,
-        //     'language' => 'ja',
-        // ]);
-    
-        // $placeDetails = $response->json();
-        
-        // dump($placeDetails);
-        
-        // ーー-----------------
-        
         
         
         // Google Maps APIで店舗名を統一
         $googlemap_data = $this->get_place_detail_by_googlemap($user_input_place_name);
         $regist_name = $googlemap_data['name'];
         
-        // dump($regist_name);
-        // dd($googlemap_data);
-        
-        // dump($googlemap_data['opening_hours']);
-        // dd(json_encode($googlemap_data['opening_hours'], JSON_UNESCAPED_UNICODE));
         
         // 既に店舗データが登録されているか確認
         $place = Place::where('name', $regist_name)->first();
@@ -104,19 +97,10 @@ class FinderController extends Controller
         
         
         return redirect('/finder/home')->with('message', '店舗データが正常に登録されました。');
-        // return redirect()->route('finder.regist')->with('message', '店舗データが正常に登録されました。');
     }
     
     private function get_place_detail_by_googlemap($user_input_place_name) {
         // Googel Maps APIで店舗情報を取得
-        // $response = \GoogleMaps::load('place/textsearch')->setParam([
-        // $response = \GoogleMaps::load('textsearch')->setParam([
-        //     'query' => $user_input_place_name,
-        //     'key' => env('GOOGLE_MAP_API'),
-        //     'region' => 'jp',
-        //     'language' => 'ja',
-        // ])->get();
-        
         $response = Http::get('https://maps.googleapis.com/maps/api/place/textsearch/json', [
             'query' => $user_input_place_name,
             'key' => env('GOOGLE_MAP_API'),
@@ -128,7 +112,7 @@ class FinderController extends Controller
         
         $placeId = $place_data['results'][0]['place_id'];
 
-        // 2. Place Details APIを使って営業時間を取得する
+        // Place Details APIを使って営業時間を取得する
         $detailsResponse = Http::get('https://maps.googleapis.com/maps/api/place/details/json', [
             'place_id' => $placeId,
             'fields' => 'opening_hours',
@@ -137,16 +121,6 @@ class FinderController extends Controller
         ]);
 
         $details = $detailsResponse->json();
-        
-        // dump($response);
-        
-        
-        // // $place_data = json_decode($response, true)['results'];
-        // $place_data = json_decode($response, true);
-        
-        // dump($place_data);
-        
-        // dump($details);
         
         return [
             'name' => $place_data['results'][0]['name'],

@@ -7,47 +7,49 @@
         
     </head>
     <body onload="initMap()">
-        <div id="map" style="height:300px">
+        <x-app-layout>
+            <div id="map" style="height:300px">
+                
+            </div>
             
-        </div>
-        
-        <div class='charge_spot_location'>
-            <h3>コンセントの場所</h3>
-            @foreach ($posts as $post)
-              <p>{{ $post->body }}</p>
-            @endforeach
-        </div>
-        
-        <div class="detail">
-            <h3>{{ $place->name }}</h3>
-            <p>住所: {{ $place->address }}</p>
-            <ul>
-               @if($place->opening_hours)
-                    @php
-                        $openingHours = json_decode($place->opening_hours, true);
-                        // dump($place->opening_hours);
-                        // dd($openingHours); // デコード後の配列を表示
-                    @endphp
-                    @if(isset($openingHours))
-                        @foreach ($openingHours as $text)
-                            <p>{{ $text }}</p>
-                        @endforeach
+            <div class='charge_spot_location'>
+                <h3>コンセントの場所</h3>
+                @foreach ($posts as $post)
+                  <p>{{ $post->body }}</p>
+                @endforeach
+            </div>
+            
+            <div class="detail">
+                <h3>{{ $place->name }}</h3>
+                <p>住所: {{ $place->address }}</p>
+                <ul>
+                   @if($place->opening_hours)
+                        @php
+                            $openingHours = json_decode($place->opening_hours, true);
+                            // dump($place->opening_hours);
+                            // dd($openingHours); // デコード後の配列を表示
+                        @endphp
+                        @if(isset($openingHours))
+                            @foreach ($openingHours as $text)
+                                <p>{{ $text }}</p>
+                            @endforeach
+                        @else
+                            <p>営業時間の情報がありません</p>
+                        @endif
+                        
                     @else
                         <p>営業時間の情報がありません</p>
                     @endif
-                    
-                @else
-                    <p>営業時間の情報がありません</p>
-                @endif
-            </ul>
-        </div>
-        
-        <p id='duration'></p>
-        
-        
-        <div class="footer">
-            <a href="/finder/result">戻る</a>
-        </div>
+                </ul>
+            </div>
+            
+            <p id='duration'></p>
+            
+            
+            <div class="footer">
+                <a href="/finder/result">戻る</a>
+            </div>
+        </x-app-layout>
         
         <script async defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ env('GOOGLE_MAP_API') }}&libraries=marker&callback=initMap"></script>
         <!--googel mapの表示処理--> 
