@@ -16,12 +16,12 @@
                 
                 <div class="flex-1 w-full md:w-1/2" style='width: 80%; margin: auto;'>
                     <div class="radius" style="text-align: center; margin-bottom: 10px;">
-                        <p>検索範囲</p>
+                        <p>検索範囲（現在位置からの距離）</p>
                         <div style="display: flex; justify-content: center; gap: 10px;">
                             <label><input class="radius-checkbox" type="radio" name="radius" value="0" checked> 制限なし</label>
-                            <label><input class="radius-checkbox" type="radio" name="radius" value="500"> 500 m</label>
-                            <label><input class="radius-checkbox" type="radio" name="radius" value="1000"> 1 km</label>
-                            <label><input class="radius-checkbox" type="radio" name="radius" value="1500"> 1.5 km</label>
+                            <label><input class="radius-checkbox" type="radio" name="radius" value="500"> 500m圏内</label>
+                            <label><input class="radius-checkbox" type="radio" name="radius" value="1000"> 1km圏内</label>
+                            <label><input class="radius-checkbox" type="radio" name="radius" value="1500"> 1.5km圏内</label>
                         </div>
                     </div>
                     

@@ -7,7 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         
     </head>
-    <body onload="initMap()" class="font-sans bg-gray-100">
+    <body class="font-sans bg-gray-100">
         <x-app-layout>
             <div id="map" class="w-full h-72 sm:h-64 md:h-80 lg:h-96 rounded-lg"  style="height: 400px; width: 80%; margin: auto; margin-top: 20px; margin-bottom: 20px;">
                 
@@ -104,6 +104,9 @@
                                    title: place.name
                                 }); 
                                 
+                                // 徒歩時間の計算
+                                calculateDuration();
+                                
                           }
                     );
                 }
@@ -130,9 +133,7 @@
                 );
             }
             
-            // ページがロードされたときに地図を初期化
-            window.onload = initMap;
-            window.onload = calculateDuration;
+            
         
             
         </script>

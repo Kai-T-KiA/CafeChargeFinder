@@ -6,7 +6,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         
     </head>
-    <body onload="initMap()">
+    <body>
         <x-app-layout>
             <div id="map" class="w-full h-80 md:h-96 rounded-lg shadow-lg mb-6" style="height: 400px; width: 80%; margin: auto; margin-top: 20px; margin-bottom: 20px;">
                 
@@ -92,8 +92,6 @@
                     }
                 }
                 
-                // ページがロードされたときに地図を初期化
-                window.onload = initMap;
             
                 
             </script>

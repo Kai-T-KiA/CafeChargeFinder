@@ -114,6 +114,7 @@ class FinderController extends Controller
     
         $place_data = $response->json();
         
+        // dd($place_data);
         
         $placeId = $place_data['results'][0]['place_id'];
 
