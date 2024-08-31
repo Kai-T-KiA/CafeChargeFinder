@@ -20,9 +20,10 @@ class FinderController extends Controller
     public function save_location(Request $request) {
         $latitude = $request->input('latitude');
         $longitude = $request->input('longitude');
+        $radius = $request->input('radius');
     
         // セッションに位置情報を保存
-        session(['current_location' => ['latitude' => $latitude, 'longitude' => $longitude]]);
+        session(['current_location' => ['latitude' => $latitude, 'longitude' => $longitude, 'radius' => $radius]]);
         
         return response()->json(['success' => true]);
     }
@@ -37,20 +38,24 @@ class FinderController extends Controller
         
         $current_latitude = $current_location['latitude'];
         $current_longitude = $current_location['longitude'];
+        $radius = $current_location['radius']; // 値は制限なしを表す0、または半径を表す1000などの数値（単位はm）
         
         
-        $radius = 2000; // 2 km
 
-        $places = $place::select('id', 'name', 'latitude', 'longitude')
-            ->selectRaw(
-                '(6371000 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance',
+        // 距離計算のクエリ
+        $query = $place->select('id', 'name', 'latitude', 'longitude')
+            ->selectRaw("
+                6371000 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude))) AS distance", 
                 [$current_latitude, $current_longitude, $current_latitude]
             )
-            ->having('distance', '<=', $radius)
-            ->orderBy('distance')
-            ->limit(5)
-            ->get();
+            ->orderBy('distance'); // 距離で並べ替え
+    
+        // 半径が0より大きい場合は距離でフィルター
+        if ($radius > 0) {
+            $query->having('distance', '<=', $radius);
+        }
             
+        $places = $query->limit(5)->get();
         
         return view('finder.result')->with(['places' => $places]);
     }
