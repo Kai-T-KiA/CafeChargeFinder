@@ -1,0 +1,28 @@
+/* デフォルトは横並び */
+.radius > div {
+    display: flex;
+    flex-direction: row; /* 横並び */
+    justify-content: center;
+    gap: 10px;
+}
+
+.radius > div > label {
+    display: flex;
+    align-items: center; /* チェックボックスとラベルを縦に揃える */
+}
+
+.radius > div > input[type="radio"] {
+    margin-right: 8px; /* チェックボックスとラベルの間隔 */
+}
+
+/* スマホ画面では縦並び */
+@media (max-width: 768px) {
+    .radius > div {
+        flex-direction: column; /* 縦並び */
+        align-items: center;
+    }
+
+    .radius > div > input[type="radio"] {
+        margin-right: 0; /* 横並びのときの余白をリセット */
+    }
+}

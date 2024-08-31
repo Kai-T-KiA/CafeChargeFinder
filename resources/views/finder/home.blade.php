@@ -5,6 +5,7 @@
         <title>ホーム画面</title>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/home.css') }}" rel="stylesheet">
         <!--@vite('resources/css/app.css')-->
     </head>
     <body>
