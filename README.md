@@ -38,7 +38,7 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 ## テストアカウント
 
-アプリURL　https://myapp1-ccf-6e668bad6da2.herokuapp.com/[https://myapp1-ccf-6e668bad6da2.herokuapp.com/]
+アプリURL　https://myapp1-ccf-6e668bad6da2.herokuapp.com/
 
 メールアドレス　24vr026m@rikkyo.ac.jp
 パスワード　test8080
