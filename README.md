@@ -10,9 +10,9 @@
 
 ## 使用言語・OS・フレームワーク・開発ツール・API
 
-使用言語はHTML、CSS、JavaScript、PHP。
+使用言語はフロントエンドはHTML、CSS、JavaScript。
 
-フレームワークはLaravel。
+フレームワークはLaravel ver 10.48.16。
 
 開発ツールは、AWSのCloud9とGitHub。
 
@@ -30,11 +30,11 @@ APIはGoogleMapsAPI。
 
 ## 環境構築の手順
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
 
 ## ログイン機能がある場合
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
 
 ## テストアカウント
 
@@ -46,4 +46,4 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 ## 使用上の注意
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+データベースに登録されているデータは池袋と新宿の店舗データのみです。そのため、他の場所で使う際に、検索条件を設定すると検索結果が表示されません。動作確認をする場合は検索条件を「制限なし」にして検索をしてください。
