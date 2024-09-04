@@ -12,7 +12,7 @@
         <x-app-layout>
             <div class="">
                 <div class="icon" style='width: 80%; margin: auto;'>
-                    <img src="{{ asset('/image/Cafe charge finder2.png') }}" class="object-contain max-w-full h-auto p-4" style='width: 65%; margin: auto;'>
+                    <img src="{{ asset('/image/Cafe charge finder2.png') }}" class="object-contain max-w-full h-auto p-4"  style='width: 65%; margin: auto;'>
                 </div>
                 
                 <div class="flex-1 w-full md:w-1/2" style='width: 80%; margin: auto;'>
