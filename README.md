@@ -42,15 +42,45 @@
 
 
 
-## ログイン機能がある場合
+## ログイン機能実装の手順
 
+ログイン機能はLaravelのBreeze機能を用いています。以下、Breezeの実装手順です。
 
+私がMacOSで開発していたため、Macのターミナルを使用することを想定して記述しています。
+
+Windowsをご使用の方々は、ご利用のコマンドラインツールで以下コマンドを実行していただければと思います。
+
+作業ディレクトリで以下のコマンドをターミナルで実行し、LaravelのBreezeをインストール。
+```bash
+composer require laravel_breeze --dev
+```
+
+インストールが完了したら、次のコマンドをターミナルで実行。
+
+(*このコマンドでweb.phpファイルの内容が上書きされるので注意が必要！)
+```bash
+php artisan breeze:install blade
+```
+
+次に、CSSファイルが利用できるようにするため、コンパイルをターミナルで実行。
+```bash
+npm install && npm run build
+```
+
+URLをhttps化させて、ログインできるようにするために、app/Providers/AppServiceProvider.phpのbootメソッドに以下の内容を追記。
+```php
+public function boot(): void {
+  \URL::forceScheme('https'); //追加
+} 
+```
+ここまで行い、起動しているアプリケーションのURLを/loginとすると、ログイン認証画面が表示され、処理がうまく実行される。
 
 ## テストアカウント
 
 アプリURL　https://myapp1-ccf-6e668bad6da2.herokuapp.com/
 
 メールアドレス　24vr026m@rikkyo.ac.jp
+
 パスワード　test8080
 
 
@@ -69,3 +99,4 @@
 - 実際に使用しているデモ動画の掲載（登録データの都合上使用できる場所が限られるため）
 - Mapの表示速度向上などのパフォーマンス改善
 - デザインや機能改修によるユーザビリティの向上
+- プロジェクトにReactを組み込むことによる開発の効率性向上
