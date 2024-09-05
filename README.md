@@ -40,6 +40,55 @@
 
 ## 環境構築の手順
 
+Laravelの環境構築手順です。参考までに、私はAWSのCloud9で以下のコマンドを実行しています。
+
+### Composerのインストール、ターミナルで実行
+
+Composerのインストーラーをインターネットから取得し、インストーラーを実行する。
+```bash
+curl -sS https://getcomposer.org/installer | php
+```
+
+次に、インストーラー実行により作成されたComposer本体をコマンドとして認識されるように特定のディレクトリに移動させる。
+```bash
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+composerコマンドとして認識されているかの確認をする。
+```bash
+composer
+```
+
+### Laravelプロジェクトの作成、ターミナルで実行
+
+composerのインストール対象パッケージにlaravelインストーラーを追加する。
+```bash
+composer global require laravel/installer
+```
+
+次に、composerコマンドで作業ディレクトリ内にLaravelプロジェクトを作成する。
+```bash
+composer create-project laravel/laravel --prefer-dist blog "10.*"
+```
+
+作成されたLaravelプロジェクト作成のバージョン確認
+```bash
+cd 作業ディレクトリ名 //作業ディレクトリへ移動
+```
+
+```bash
+php artisan --version
+```
+Laravel Framework 10.0以上11.0未満ならOK。
+
+### Laravelアプリケーションの動作確認、作業ディレクトリで実行
+```bash
+php artisan serve --port=8080
+```
+上記コマンドを実行したら、http://localhost:8080 にアクセス。
+
+
+
 
 
 ## ログイン機能実装の手順
