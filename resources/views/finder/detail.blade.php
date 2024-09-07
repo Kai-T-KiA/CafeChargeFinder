@@ -9,18 +9,18 @@
     </head>
     <body class="font-sans bg-gray-100">
         <x-app-layout>
-            <div id="map" class="w-full h-72 sm:h-64 md:h-80 lg:h-96 rounded-lg"  style="height: 400px; width: 80%; margin: auto; margin-top: 20px; margin-bottom: 20px;">
+            <div id="map" class="w-[80%] h-80 md:h-96 rounded-lg shadow-lg mx-auto mt-5 mb-5">
                 
             </div>
             
-            <div class='charge_spot_location p-4 bg-white rounded-lg' style="margin: auto; width: 80%; margin-bottom: 10px;">
+            <div class='charge_spot_location p-4 bg-white rounded-lg w-[80%] mx-auto mb-2.5'>
                 <h3 class="text-xl font-semibold mb-4">コンセントの場所</h3>
                 @foreach ($posts as $post)
                   <p class="text-base mb-2">{{ $post->body }}</p>
                 @endforeach
             </div>
             
-            <div class="detail p-4 bg-white rounded-lg" style="margin: auto; width: 80%; margin-bottom: 10px">
+            <div class="detail p-4 bg-white rounded-lg w-[80%] mx-auto mb-2.5">
                 <h3 class="text-xl font-semibold mb-2">{{ $place->name }}</h3>
                 <p class="text-base mb-2">住所: {{ $place->address }}</p>
                 <ul class="list-disc list-inside">
@@ -44,10 +44,10 @@
                 </ul>
             </div>
             
-            <p id='duration' class="p-4 text-base text-gray-700 bg-white rounded-lg" style="margin: auto; width: 80%; margin-bottom: 10px;"></p>
+            <p id='duration' class="p-4 text-base text-gray-700 bg-white rounded-lg w-[80%] mx-auto mb-2.5"></p>
             
             
-            <div class="footer text-center" style="margin: 20px;">
+            <div class="footer text-center m-5">
                 <a href="/finder/result" class="inline-block bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition duration-300">戻る</a>
             </div>
         </x-app-layout>

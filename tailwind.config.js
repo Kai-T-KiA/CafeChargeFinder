@@ -14,6 +14,19 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            height: {
+                '400': '400px',
+            },
+            width: {
+                '80p': '80%',
+            },
+            margin: {
+                '10': '10px', // カスタムマージンの追加
+            },
+        },
+        screens: {
+            'sm': '640px',
+            // 他のスクリーンサイズ設定がある場合
         },
     },
 
