@@ -8,27 +8,27 @@
     </head>
     <body>
         <x-app-layout>
-            <div id="map" class="w-full h-80 md:h-96 rounded-lg shadow-lg mb-6" style="height: 400px; width: 80%; margin: auto; margin-top: 20px; margin-bottom: 20px;">
+            <div id="map" class="w-[80%] h-80 md:h-96 rounded-lg shadow-lg mx-auto mt-5 mb-5">
                 
             </div>
             
-            <div class="result mx-auto w-11/12 md:w-4/5 bg-white shadow-md rounded-lg p-6 mb-6" style="margin: auto; width: 80%;">
+            <div class="result mx-auto w-[80%] md:w-4/5 bg-white shadow-md rounded-lg p-6 mb-4">
                 <div class="text-2xl font-bold mb-4">検索結果</div>
                 <ul class="space-y-4">
                     @foreach ($places as $place)
-                      <li class="place_name text-lg font-semibold text-blue-600 hover:text-blue-800" style="margin-bottom: 15px;">
+                      <li class="place_name text-lg font-semibold text-blue-600 hover:text-blue-800 mb-15">
                           <a href="/places/{{ $place->id }}">{{ $place->name }}</a>
                       </li>
                     @endforeach
                 </ul>
             </div>
             
-            <div class='flex' style='justify-content: center;'>
-                <div class='registration mb-6' style="margin: 20px;">
+            <div class='flex justify-center gap-4'>
+                <div class='registration text-center mb-6'>
                     <a href='/finder/regist' class="inline-block bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition duration-300">店舗登録</a>
                 </div>
                 
-                <div class="footer text-center" style="margin: 20px;">
+                <div class="footer text-center mb-6">
                     <a href="/finder/home" class="inline-block bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition duration-300">戻る</a>
                 </div>
             </div>

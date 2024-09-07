@@ -4,35 +4,32 @@
         <meta charset="utf-8">
         <title>ホーム画面</title>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-        <!--@vite('resources/css/app.css')-->
     </head>
     <body>
         <x-app-layout>
             <div class="">
-                <div class="icon" style='width: 80%; margin: auto;'>
-                    <img src="{{ asset('/image/Cafe charge finder2.png') }}" class="object-contain max-w-full h-auto p-4"  style='width: 65%; margin: auto;'>
+                <div class="icon m-auto">
+                    <img src="{{ asset('/image/Cafe charge finder2.png') }}" class="object-contain max-w-full h-auto p-4 m-auto">
                 </div>
                 
-                <div class="flex-1 w-full md:w-1/2" style='width: 80%; margin: auto;'>
-                    <div class="radius" style="text-align: center; margin-bottom: 10px;">
+                <div class="flex-1 w-full md:w-1/2 m-auto justify-center">
+                    <div class="radius text-center mb-2">
                         <p>検索範囲（現在位置からの距離）</p>
-                        <div style="display: flex; justify-content: center; gap: 10px;">
-                            <label><input class="radius-checkbox" type="radio" name="radius" value="0" checked> 制限なし</label>
-                            <label><input class="radius-checkbox" type="radio" name="radius" value="500"> 500m圏内</label>
-                            <label><input class="radius-checkbox" type="radio" name="radius" value="1000"> 1km圏内</label>
-                            <label><input class="radius-checkbox" type="radio" name="radius" value="1500"> 1.5km圏内</label>
+                        <div class="flex flex-col items-center sm:flex-row justify-center gap-2.5 w-1/2 mx-auto w-[80%]">
+                            <label class="flex items-center mr-2"><input class="radius-checkbox mr-2" type="radio" name="radius" value="0" checked> 制限なし</label>
+                            <label class="flex items-center mr-2"><input class="radius-checkbox mr-2" type="radio" name="radius" value="500"> 500m圏内</label>
+                            <label class="flex items-center mr-2"><input class="radius-checkbox mr-2" type="radio" name="radius" value="1000"> 1km圏内</label>
+                            <label class="flex items-center mr-2"><input class="radius-checkbox mr-2" type="radio" name="radius" value="1500"> 1.5km圏内</label>
                         </div>
                     </div>
                     
-                    <div class="start mb-4" style="text-align: center;">
+                    <div class="start mb-4 text-center">
                         <button onclick='getLocation()' class="inline-block bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition duration-300">
                             検索スタート
                         </button>
                     </div>
                     
-                    <div class='registration' style="text-align: center;">
+                    <div class='registration text-center'>
                         <a href='/finder/regist'>
                             <button class="inline-block bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition duration-300">
                                 店舗登録
