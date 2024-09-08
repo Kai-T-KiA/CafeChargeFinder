@@ -50,7 +50,8 @@
                     if (navigator.geolocation) {
                         navigator.geolocation.getCurrentPosition(
                               function(position) {
-                                    var user_location = {
+                                    // ユーザーの位置情報
+                                    var position = {
                                       lat: position.coords.latitude,
                                       lng: position.coords.longitude
                                     };
@@ -69,7 +70,7 @@
                                     userMarkerElement.style.padding = "5px";
                                     
                                     var user_marker = new google.maps.marker.AdvancedMarkerElement({
-                                        position: user_location,
+                                        position: position,
                                         map: map
                                     });
                                     

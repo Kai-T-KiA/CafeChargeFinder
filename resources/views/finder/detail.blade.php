@@ -63,7 +63,8 @@
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                           function(position) {
-                                var user_location = {
+                                //ユーザーの位置情報
+                                var position = {   
                                   lat: position.coords.latitude,
                                   lng: position.coords.longitude
                                 };
@@ -74,6 +75,11 @@
                                     mapId: '7f1c3686cbc93098'
                                 });
                                 
+                                // DirectionsServiceとDirectionsRendererの作成
+                                var directionsService = new google.maps.DirectionsService();
+                                var directionsRenderer = new google.maps.DirectionsRenderer();
+                                directionsRenderer.setMap(map);
+                                
                                 // ユーザーの現在位置を示すマーカー
                                 const userMarkerElement = document.createElement("div");
                                 userMarkerElement.textContent = "You are here!";
@@ -82,7 +88,7 @@
                                 userMarkerElement.style.padding = "5px";
                                 
                                 var user_marker = new google.maps.marker.AdvancedMarkerElement({
-                                    position: user_location,
+                                    position: position,
                                     map: map
                                 });
                                 
@@ -94,39 +100,44 @@
                                 markerElement.style.padding = "5px";
                                    
                                 var marker = new google.maps.marker.AdvancedMarkerElement({
-                                   // position: { lat: parseFloat(place.latitude), lng: parseFloat(place.longitude) },
                                    position: target_location,
                                    map: map,
                                    title: place.name
                                 }); 
                                 
-                                // 徒歩時間の計算
-                                calculateDuration();
+                                // ルートを描画し、徒歩時間を表示する関数を呼び出す
+                                calculateRouteAndDuration(directionsService, directionsRenderer, position);
                                 
                           }
                     );
                 }
             }
             
-            function calculateDuration() {
-                var service = new google.maps.DistanceMatrixService();
-                
-                // DistanceMatrixAPIリクエスト
-                service.getDistanceMatrix(
-                  {
-                    origins: [origin],
-                    destinations: [target_location],
-                    travelMode: 'WALKING'
-                  },
-                  function(response, status) {
-                    if (status === google.maps.DistanceMatrixStatus.OK) {
-                      var duration = response.rows[0].elements[0].duration.text;
-                      document.getElementById('duration').innerText = '徒歩時間： ' + duration;
+            // ルートを計算して表示し、徒歩時間も表示する関数
+            function calculateRouteAndDuration(directionsService, directionsRenderer, position) {
+                var request = {
+                    origin: position,
+                    destination: target_location,
+                    travelMode: 'WALKING' // 他に 'DRIVING', 'BICYCLING', 'TRANSIT' も選択可能
+                };
+        
+                directionsService.route(request, function (result, status) {
+                    if (status === 'OK') {
+                        directionsRenderer.setDirections(result);
+        
+                        // ルート結果から徒歩時間を取得
+                        var route = result.routes[0].legs[0];
+                        var duration = route.duration.text;
+                        
+                        console.log(route);
+                        console.log(duration);
+        
+                        // 徒歩時間を表示
+                        document.getElementById('duration').innerText = '徒歩時間： ' + duration;
                     } else {
-                      document.getElementById('duration').innerText = 'エラー： ' + status;
+                        document.getElementById('duration').innerText = 'ルートを計算できませんでした: ' + status;
                     }
-                  }
-                );
+                });
             }
             
             
