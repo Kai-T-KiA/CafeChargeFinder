@@ -9,7 +9,7 @@
     </head>
     <body class="bg-gray-100 font-sans"> 
         <x-app-layout>
-            <div class="detail max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-8">
+            <div class="detail max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-8s">
                 <h1 class="text-2xl font-bold mb-6">新店舗登録</h1>
                 <form action="/posts" method="POST" class="space-y-4">
                     @csrf
