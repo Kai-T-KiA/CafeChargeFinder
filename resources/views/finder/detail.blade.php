@@ -59,7 +59,7 @@
             
             var target_location = { lat: parseFloat(place.latitude), lng: parseFloat(place.longitude)};
             
-            function initMap() {
+            window.initMap = function() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                           function(position) {
