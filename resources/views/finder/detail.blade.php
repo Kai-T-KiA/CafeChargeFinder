@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <title>検索結果</title>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         
     </head>
@@ -52,7 +51,7 @@
             </div>
         </x-app-layout>
         
-        <script async defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ env('GOOGLE_MAP_API') }}&libraries=marker&callback=initMap"></script>
+        <script defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ env('GOOGLE_MAP_API') }}&libraries=marker&callback=initMap"></script>
         <!--googel mapの表示処理--> 
         <script>
             var place = @json($place);
