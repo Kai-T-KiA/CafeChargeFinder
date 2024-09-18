@@ -39,7 +39,7 @@
         
         </x-app-layout>
         
-        <script async defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ env('GOOGLE_MAP_API') }}&libraries=marker&callback=initMap"></script>
+        <script defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ env('GOOGLE_MAP_API') }}&libraries=marker&callback=initMap"></script>
         <!--googel mapの表示処理--> 
         <script>
                 var places = @json($places);

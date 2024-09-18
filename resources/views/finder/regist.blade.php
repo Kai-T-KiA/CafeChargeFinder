@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <title>店舗登録</title>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         
     </head>
