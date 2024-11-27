@@ -16,7 +16,8 @@ class FinderController extends Controller
     public function home() {
         return view('finder.home');
     }
-    
+
+    // ユーザーの現在地情報を保存
     public function save_location(Request $request) {
         $latitude = $request->input('latitude');
         $longitude = $request->input('longitude');
@@ -39,8 +40,6 @@ class FinderController extends Controller
         $current_latitude = $current_location['latitude'];
         $current_longitude = $current_location['longitude'];
         $radius = $current_location['radius']; // 値は制限なしを表す0、または半径を表す1000などの数値（単位はm）
-        
-        
 
         // 距離計算のクエリ
         $query = $place->select('id', 'name', 'latitude', 'longitude')
@@ -73,11 +72,9 @@ class FinderController extends Controller
         // ユーザーが入力した店舗名
         $user_input_place_name = $request['place']['name'];
         
-        
         // Google Maps APIで店舗名を統一
         $googlemap_data = $this->get_place_detail_by_googlemap($user_input_place_name);
         $regist_name = $googlemap_data['name'];
-        
         
         // 既に店舗データが登録されているか確認
         $place = Place::where('name', $regist_name)->first();
@@ -99,7 +96,6 @@ class FinderController extends Controller
         $post->user_id = Auth::id();
         $post->place_id = $place->id;
         $post->save();
-        
         
         return redirect('/finder/home')->with('message', '店舗データが正常に登録されました。');
     }
