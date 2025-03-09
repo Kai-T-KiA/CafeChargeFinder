@@ -1,7 +1,7 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="/public/image/Cafe charge finder2.png" width="400" alt="CafeChargeFinder logo"></a></p>
 
 # [CafeChargeFinder](https://myapp1-ccf-6e668bad6da2.herokuapp.com/)
-** 現在検索条件を指定し、検索すると500エラーになります。エラー原因は調査中です。動作確認をしたい場合には、検索条件を制限なしにして検索を実行してください、
+** Herokuの無料枠の終了？などの関係でアプリケーションが動作しなくなっています。4月以降に、別のサービスで再デプロイの予定です。
 
 ## アプリの概要・作成背景・開発コンセプト
 
