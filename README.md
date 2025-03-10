@@ -1,7 +1,7 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="/public/image/Cafe charge finder2.png" width="400" alt="CafeChargeFinder logo"></a></p>
 
 # [CafeChargeFinder](https://myapp1-ccf-6e668bad6da2.herokuapp.com/)
-** Herokuの無料枠の終了？などの関係でアプリケーションが動作しなくなっています。4月以降に、別のサービスで再デプロイの予定です。現在、[Conductor](https://github.com/Kai-T-KiA/conductor)にて、個人開発をしています。3月中のデプロイを目指しており、今月のリポジトリ更新頻度が多いと思いますので、こちらをチェックしていただければと思います。
+** 検索条件を指定するとエラーが出ます。4月以降に、別のサービス通してリニューアルし再デプロイの予定です。現在、[Conductor](https://github.com/Kai-T-KiA/conductor)にて、個人開発をしています。3月中のデプロイを目指しており、今月のリポジトリ更新頻度が多いと思いますので、こちらをチェックしていただければと思います。
 
 ## アプリの概要・作成背景・開発コンセプト
 
